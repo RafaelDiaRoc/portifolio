@@ -1,0 +1,10 @@
+---
+// src/components/CaseCard.astro
+const { title, challenge, action, result } = Astro.props;
+---
+<div class="bg-slate-800/50 p-6 rounded-lg border border-slate-700 backdrop-blur-sm transition-all duration-300 hover:border-teal-400 hover:scale-[1.02]">
+    <h4 class="font-bold text-teal-400 text-lg mb-3">{title}</h4>
+    <p class="mb-3"><strong class="text-white">Desafio:</strong> {challenge}</p>
+    <p class="mb-3"><strong class="text-white">Ação:</strong> {action}</p>
+    <p><strong class="text-white">Resultado:</strong> {result}</p>
+</div>

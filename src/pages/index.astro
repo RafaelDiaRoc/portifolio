@@ -1,16 +1,266 @@
 ---
-
+// src/pages/index.astro
+import '../styles/globals.css';
+import CaseCard from '../components/CaseCard.astro';
+import AppCard from '../components/AppCard.astro';
+import { Icon } from 'astro-icon/components';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rafael Diana Rocha | Software Engineering Manager</title>
+    <meta name="description" content="Portfólio de Rafael Diana Rocha, líder técnico e desenvolvedor full-stack." />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        html { scroll-behavior: smooth; }
+
+        /* --- Animação do Fundo de Estrelas (VERSÃO FINAL E DENSA) --- */
+        @keyframes move-stars-infinite {
+            from { background-position-y: 0px; }
+            to   { background-position-y: -2000px; }
+        }
+
+        .stars, .stars2, .stars3 {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .stars {
+            background-image: 
+                radial-gradient(1px 1px at 20px 30px, #eee, rgba(0,0,0,0)),
+                radial-gradient(1px 1px at 40px 70px, #fff, rgba(0,0,0,0)),
+                radial-gradient(1px 1px at 50px 160px, #ddd, rgba(0,0,0,0)),
+                radial-gradient(1px 1px at 90px 40px, #fff, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 130px 80px, #fff, rgba(0,0,0,0)),
+                radial-gradient(1px 1px at 160px 120px, #ddd, rgba(0,0,0,0)),
+                radial-gradient(1px 1px at 220px 180px, #eee, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 340px 110px, #fff, rgba(0,0,0,0)),
+                radial-gradient(1px 1px at 450px 90px, #ddd, rgba(0,0,0,0)),
+                radial-gradient(1px 1px at 480px 190px, #fff, rgba(0,0,0,0)),
+                radial-gradient(1px 1px at 300px 300px, #eee, rgba(0,0,0,0)),
+                radial-gradient(1px 1px at 340px 370px, #fff, rgba(0,0,0,0)),
+                radial-gradient(1px 1px at 350px 460px, #ddd, rgba(0,0,0,0)),
+                radial-gradient(1px 1px at 390px 440px, #fff, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 430px 480px, #89cff0, rgba(0,0,0,0)), /* Azul */
+                radial-gradient(1px 1px at 120px 230px, #eee, rgba(0,0,0,0)),
+                radial-gradient(1px 1px at 240px 270px, #fff, rgba(0,0,0,0)),
+                radial-gradient(1px 1px at 350px 260px, #ddd, rgba(0,0,0,0)),
+                radial-gradient(1px 1px at 490px 240px, #fff, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 230px 280px, #fff, rgba(0,0,0,0)),
+                radial-gradient(1px 1px at 80px 500px, #eee, rgba(0,0,0,0)),
+                radial-gradient(1px 1px at 140px 570px, #fff, rgba(0,0,0,0)),
+                radial-gradient(1px 1px at 250px 560px, #ddd, rgba(0,0,0,0)),
+                radial-gradient(1px 1px at 390px 540px, #fff, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 430px 580px, #fff, rgba(0,0,0,0)),
+                radial-gradient(1px 1px at 400px 620px, #ddd, rgba(0,0,0,0)),
+                radial-gradient(1px 1px at 320px 680px, #eee, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 140px 710px, #fff, rgba(0,0,0,0)),
+                radial-gradient(1px 1px at 50px 790px, #ddd, rgba(0,0,0,0)),
+                radial-gradient(1px 1px at 180px 790px, #fff, rgba(0,0,0,0));
+            background-repeat: repeat;
+            background-size: 503px 997px;
+            animation: move-stars-infinite 250s linear infinite;
+        }
+
+        .stars2 {
+            background-image: 
+                radial-gradient(1px 1px at 10px 90px, #eee, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 30px 50px, #fff, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 110px 140px, #ddd, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 70px 180px, #fff, rgba(0,0,0,0)),
+                radial-gradient(3px 3px at 150px 100px, #fff, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 180px 60px, #ddd, rgba(0,0,0,0)),
+                radial-gradient(1px 1px at 250px 200px, #eee, rgba(0,0,0,0)),
+                radial-gradient(3px 3px at 320px 150px, #ffd700, rgba(0,0,0,0)), /* Dourado */
+                radial-gradient(2px 2px at 400px 100px, #fff, rgba(0,0,0,0)),
+                radial-gradient(1px 1px at 550px 180px, #ddd, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 330px 250px, #fff, rgba(0,0,0,0)),
+                radial-gradient(1px 1px at 410px 340px, #ddd, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 470px 280px, #fff, rgba(0,0,0,0)),
+                radial-gradient(3px 3px at 550px 200px, #fff, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 580px 60px, #ddd, rgba(0,0,0,0)),
+                radial-gradient(1px 1px at 20px 430px, #eee, rgba(0,0,0,0)),
+                radial-gradient(1px 1px at 140px 470px, #fff, rgba(0,0,0,0)),
+                radial-gradient(1px 1px at 250px 460px, #ddd, rgba(0,0,0,0)),
+                radial-gradient(1px 1px at 390px 540px, #fff, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 530px 580px, #fff, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 220px 640px, #ddd, rgba(0,0,0,0)),
+                radial-gradient(1px 1px at 310px 680px, #eee, rgba(0,0,0,0)),
+                radial-gradient(3px 3px at 540px 710px, #fff, rgba(0,0,0,0)),
+                radial-gradient(1px 1px at 450px 790px, #ddd, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 580px 790px, #fff, rgba(0,0,0,0)),
+                radial-gradient(1px 1px at 20px 830px, #eee, rgba(0,0,0,0)),
+                radial-gradient(1px 1px at 140px 870px, #fff, rgba(0,0,0,0)),
+                radial-gradient(1px 1px at 250px 860px, #ddd, rgba(0,0,0,0)),
+                radial-gradient(1px 1px at 390px 840px, #fff, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 530px 880px, #fff, rgba(0,0,0,0));
+            background-repeat: repeat;
+            background-size: 601px 883px;
+            animation: move-stars-infinite 180s linear infinite;
+        }
+
+        .stars3 {
+            background-image: 
+                radial-gradient(2px 2px at 5px 150px, #eee, rgba(0,0,0,0)),
+                radial-gradient(3px 3px at 25px 100px, #fff, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 125px 180px, #ddd, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 80px 120px, #fff, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 140px 40px, #fff, rgba(0,0,0,0)),
+                radial-gradient(3px 3px at 190px 110px, #ddd, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 300px 80px, #eee, rgba(0,0,0,0)),
+                radial-gradient(3px 3px at 420px 140px, #fff, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 500px 190px, #ddd, rgba(0,0,0,0)),
+                radial-gradient(3px 3px at 680px 100px, #fff, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 310px 280px, #eee, rgba(0,0,0,0)),
+                radial-gradient(3px 3px at 430px 240px, #fff, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 510px 290px, #ff6b6b, rgba(0,0,0,0)), /* Vermelho */
+                radial-gradient(3px 3px at 690px 200px, #fff, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 720px 250px, #ddd, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 5px 550px, #eee, rgba(0,0,0,0)),
+                radial-gradient(3px 3px at 25px 600px, #fff, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 125px 680px, #ddd, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 80px 720px, #fff, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 140px 740px, #fff, rgba(0,0,0,0)),
+                radial-gradient(3px 3px at 390px 610px, #ddd, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 400px 680px, #eee, rgba(0,0,0,0)),
+                radial-gradient(3px 3px at 520px 740px, #fff, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 600px 790px, #ddd, rgba(0,0,0,0)),
+                radial-gradient(3px 3px at 690px 800px, #fff, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 555px 550px, #eee, rgba(0,0,0,0)),
+                radial-gradient(3px 3px at 625px 600px, #fff, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 725px 680px, #ddd, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 680px 720px, #fff, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 740px 740px, #fff, rgba(0,0,0,0));
+            background-repeat: repeat;
+            background-size: 757px 1019px;
+            animation: move-stars-infinite 120s linear infinite;
+        }
+
+        /* --- Animação de Scroll --- */
+        .fade-in-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .fade-in-on-scroll.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-b from-[#0f172a] to-[#0c1322] text-slate-300 font['Inter'] leading-relaxed">
+    
+    <div class="stars"></div>
+    <div class="stars2"></div>
+    <div class="stars3"></div>
+
+    <div class="relative max-w-4xl mx-auto p-6 md:p-8">
+
+        <header class="flex justify-between items-center mb-20 fade-in-on-scroll">
+            <h2 class="text-xl font-bold text-white">Rafael Diana Rocha</h2>
+            <nav class="hidden md:flex space-x-6">
+                <a href="#sobre" class="hover:text-teal-400 transition-colors">Sobre</a>
+                <a href="#projetos" class="hover:text-teal-400 transition-colors">Projetos</a>
+                <a href="#apps" class="hover:text-teal-400 transition-colors">Apps</a>
+                <a href="#contato" class="hover:text-teal-400 transition-colors">Contato</a>
+            </nav>
+        </header>
+
+        <main>
+            <section class="mb-24 fade-in-on-scroll">
+                <h1 class="text-5xl md:text-6xl font-extrabold mb-4 text-gradient">Software Engineering Manager & Arquiteto de Soluções</h1>
+                <p class="text-lg md:text-xl text-slate-400">Focado em liderança técnica e no desenvolvimento de sistemas ERP/PDV que apoiam o crescimento de empresas, da indústria ao varejo.</p>
+            </section>
+
+            <section id="sobre" class="mb-24 fade-in-on-scroll">
+                <h3 class="text-3xl font-bold text-white mb-8">Filosofia de Trabalho</h3>
+                <div class="flex flex-col md:flex-row items-center gap-10">
+                    <div class="md:w-2/3 space-y-4 text-lg">
+                        <p>Com mais de 4 anos de experiência no ciclo completo de desenvolvimento, o foco sempre foi resolver problemas complexos de negócio através da tecnologia. A liderança de uma equipe multifuncional (desenvolvimento, suporte e testes) exige um balanço constante entre a entrega de novas funcionalidades e o suporte às demandas críticas do dia a dia.</p>
+                        <p>Uma abordagem de gestão baseada na transparência e na comunicação direta com os clientes é fundamental, pois a prioridade deve ser sempre a necessidade real do negócio. Esse compromisso com a entrega leva à busca por soluções eficazes, trabalhando para que os parceiros tenham a tecnologia de que precisam para evoluir.</p>
+                    </div>
+                    <div class="md:w-1/3 flex justify-center">
+                        <img src="/profile.jpg" alt="Foto de perfil de Rafael Diana Rocha" class="rounded-full w-48 h-48 object-cover border-4 border-slate-700 shadow-lg transition-all duration-300 hover:border-teal-400 hover:scale-105">
+                    </div>
+                </div>
+            </section>
+
+            <section id="projetos" class="mb-24 fade-in-on-scroll">
+                <h3 class="text-3xl font-bold text-white mb-8">Projetos em Destaque</h3>
+                <div class="space-y-8">
+                    <CaseCard 
+                        title="Desenvolvimento de Fluxos de Produção Personalizados"
+                        challenge="Sistemas ERP genéricos forçavam clientes industriais a adaptar seus processos únicos ao software, limitando sua eficiência."
+                        action="Foi desenvolvida uma arquitetura modular que permite a criação de fluxos de produção totalmente personalizados, mapeando o processo de cada cliente diretamente no sistema."
+                        result="O resultado foi uma funcionalidade muito valorizada pelos clientes, que passaram a ter um sistema que se molda ao seu trabalho, e não o contrário. Para a equipe, foi um aprendizado importante sobre arquitetura flexível."
+                    />
+                    <CaseCard 
+                        title="Refatoração Estratégica do Módulo Fiscal"
+                        challenge="Componentes legados no módulo de emissão fiscal geravam um volume alto de chamados de suporte devido à complexidade da legislação brasileira."
+                        action="Após mapear os pontos mais críticos, partes essenciais do módulo foram refatoradas, substituindo a lógica genérica por um sistema mais robusto e detalhado para validação de documentos fiscais (XML)."
+                        result="A refatoração contribuiu para uma redução notável nos chamados de suporte sobre o tema, o que trouxe mais estabilidade para os clientes e permitiu que a equipe dedicasse mais tempo a novas funcionalidades."
+                    />
+                </div>
+            </section>
+            
+            <section id="apps" class="mb-24 fade-in-on-scroll">
+                <h3 class="text-3xl font-bold text-white mb-8">Projetos Pessoais (Apps na Play Store)</h3>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <AppCard 
+                        href="https://play.google.com/store/apps/details?id=com.rafael.agenbike&pcampaignid=web_share"
+                        title="Agenbike"
+                        description="Solução completa para gestão de oficinas de bicicleta. Permite organizar clientes, controlar serviços e gerar orçamentos profissionais em PDF."
+                    />
+                    <AppCard 
+                        href="https://play.google.com/store/apps/details?id=com.rafael.eventofacil&pcampaignid=web_share"
+                        title="Evento Fácil"
+                        description="App de gestão para empresas de eventos, com controle de agenda, inventário de aluguéis, financeiro e gestão de equipes."
+                    />
+                    <AppCard 
+                        href="https://play.google.com/store/apps/details?id=com.rafael.simplemoney&pcampaignid=web_share"
+                        title="SimpleMoney"
+                        description="Gerenciador financeiro pessoal para controle de despesas, receitas e orçamentos, com relatórios e sincronização na nuvem."
+                    />
+                </div>
+            </section>
+
+        </main>
+
+        <footer id="contato" class="border-t border-slate-700 pt-8 fade-in-on-scroll">
+            <h3 class="text-3xl font-bold text-white mb-6 text-center">Vamos Conversar?</h3>
+            <p class="text-center mb-8 text-lg">Aberto a novas oportunidades e colaborações. Sinta-se à vontade para entrar em contato através de um dos canais abaixo.</p>
+        </footer>
+
+    </div>
+
+    <!-- O SCRIPT DA ANIMAÇÃO DE SCROLL -->
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target); // Opcional: para animar apenas uma vez
+                }
+            });
+        }, {
+            threshold: 0.1, // A animação começa quando 10% do elemento está visível
+        });
+
+        const elementsToAnimate = document.querySelectorAll('.fade-in-on-scroll');
+        elementsToAnimate.forEach((el) => {
+            observer.observe(el);
+        });
+    </script>
+</body>
 </html>
